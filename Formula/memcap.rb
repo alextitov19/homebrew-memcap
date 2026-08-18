@@ -24,14 +24,14 @@ class Memcap < Formula
   # second time as a 28-hour outage found only by reading actions.log timestamps.
   def caveats
     <<~EOS
-      Upgrading stops the background service. After every upgrade, run:
-        brew services restart alextitov19/memcap/memcap
+      Upgrading stops the background service, which silently ends enforcement
+      until it is restarted (see below).
 
-      To check enforcement is actually running at any time:
+      To check enforcement is actually running, at any time:
         memcap status
 
       It reports when the last enforcement pass happened, and says so plainly
-      if memcap has stopped.
+      when memcap has stopped.
     EOS
   end
 

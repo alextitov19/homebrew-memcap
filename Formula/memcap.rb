@@ -18,10 +18,12 @@ class Memcap < Formula
     chmod 0755, bin/"memcap"
   end
 
-  # `brew upgrade` stops the service and does not bring it back, so an upgrade
-  # silently ends enforcement -- the failure this tool exists to prevent, arriving
-  # by way of routine maintenance. Observed twice on the author's machine, the
-  # second time as a 28-hour outage found only by reading actions.log timestamps.
+  # Homebrew prints its own restart hint for a service formula, so this only adds
+  # what that hint does not say: enforcement ends silently, and `memcap status`
+  # will tell you. An earlier version of this comment blamed `brew upgrade` for a
+  # 28-hour outage on the author's machine. That was wrong -- the cause was
+  # `memcap uninstall` calling `brew services stop` unsandboxed from the test
+  # suite. Left here as a correction rather than deleted.
   def caveats
     <<~EOS
       Upgrading stops the background service, which silently ends enforcement

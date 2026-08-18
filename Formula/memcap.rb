@@ -18,6 +18,23 @@ class Memcap < Formula
     chmod 0755, bin/"memcap"
   end
 
+  # `brew upgrade` stops the service and does not bring it back, so an upgrade
+  # silently ends enforcement -- the failure this tool exists to prevent, arriving
+  # by way of routine maintenance. Observed twice on the author's machine, the
+  # second time as a 28-hour outage found only by reading actions.log timestamps.
+  def caveats
+    <<~EOS
+      Upgrading stops the background service. After every upgrade, run:
+        brew services restart alextitov19/memcap/memcap
+
+      To check enforcement is actually running at any time:
+        memcap status
+
+      It reports when the last enforcement pass happened, and says so plainly
+      if memcap has stopped.
+    EOS
+  end
+
   service do
     run [opt_bin/"memcap", "watch"]
     run_type :interval

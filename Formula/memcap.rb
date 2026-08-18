@@ -19,9 +19,12 @@ class Memcap < Formula
   end
 
   # No `service do` block on purpose: a Homebrew-managed service writes
-  # homebrew.mxcl.memcap.plist, which `brew upgrade` removes -- leaving memcap
-  # not running and unable to return at login, since the plist that would load it
-  # is gone. memcap installs its own agent instead, which Homebrew never created
+  # homebrew.mxcl.memcap.plist, which any `brew services stop memcap` removes --
+  # whoever or whatever issues it -- leaving memcap not running and unable to
+  # return at login, since the plist that would load it is gone. (An earlier
+  # version of this comment said `brew upgrade` removes it. That is unproven: the
+  # plist survived the upgrade to v0.2.0 on the author's machine. The `stop` path
+  # is the one actually observed, and is enough on its own.) memcap installs its own agent instead, which Homebrew never created
   # and so cannot remove. Keeping the block would also leave
   # `brew services start memcap` live as a second mechanism, loading a second
   # agent alongside memcap's own and racing it every 60 seconds.

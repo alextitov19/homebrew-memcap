@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.5.1.tar.gz"
-  sha256 "87adf085ea0cfc07f06f0606f29a492378e1a8ca1ed359c5aa753fa4deeb06d3"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.6.0.tar.gz"
+  sha256 "3b995a9794f3c2e86987f3676309e634c382812950d488ce737ee1c04817b642"
   license "MIT"
 
   depends_on :macos

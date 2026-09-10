@@ -1,12 +1,12 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.6.0.tar.gz"
-  sha256 "3b995a9794f3c2e86987f3676309e634c382812950d488ce737ee1c04817b642"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.7.0.tar.gz"
+  sha256 "729f9aaeefb7f4f2dbd7b45a71c00086a2dddde4a059a4ce260da4ad67275520"
   license "MIT"
 
-  depends_on :macos
   depends_on "jq"
+  depends_on :macos
 
   def install
     libexec.install Dir["libexec/*"]
@@ -24,7 +24,8 @@ class Memcap < Formula
   # return at login, since the plist that would load it is gone. (An earlier
   # version of this comment said `brew upgrade` removes it. That is unproven: the
   # plist survived the upgrade to v0.2.0 on the author's machine. The `stop` path
-  # is the one actually observed, and is enough on its own.) memcap installs its own agent instead, which Homebrew never created
+  # is the one actually observed, and is enough on its own.) memcap installs its
+  # own agent instead, which Homebrew never created
   # and so cannot remove. Keeping the block would also leave
   # `brew services start memcap` live as a second mechanism, loading a second
   # agent alongside memcap's own and racing it every 60 seconds.
@@ -37,19 +38,26 @@ class Memcap < Formula
   def caveats
     <<~EOS
       Run `memcap init` to set up. It installs memcap's own LaunchAgent, which
-      starts at login and survives `brew upgrade` -- a Homebrew-managed service
-      is removed by upgrades, which silently ends enforcement.
+      starts at login and is preserved when the binary is upgraded.
+      Existing installations do not need to run init again.
 
       If you previously ran `brew services start memcap`, `memcap init` stops and
       removes that agent for you.
 
       To check enforcement is actually running, at any time:
         memcap status
+
+      Read the latest private pressure snapshot:
+        memcap diagnostics
     EOS
   end
 
-
   test do
+    ENV["MEMCAP_CONFIG_HOME"] = (testpath/"config").to_s
+    ENV["MEMCAP_STATE_HOME"] = (testpath/"state").to_s
+    ENV["MC_DRY_RUN"] = "1"
     assert_match "usage", shell_output("#{bin}/memcap help")
+    assert_match "memcap #{version}", shell_output("#{bin}/memcap version")
+    assert_match "No pressure snapshots", shell_output("#{bin}/memcap diagnostics")
   end
 end

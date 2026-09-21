@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.8.0.tar.gz"
-  sha256 "6e763ce4ef75d13d9583f34ce584839ad72962404e27ef6a1133ff75e60e7e77"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.9.0.tar.gz"
+  sha256 "49440e1f0aeed923f6d57ec6d1b977bcf5302d332079a953b2f5fa2e67113c02"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,14 @@ class Memcap < Formula
       Run `memcap init` to set up. It installs memcap's own LaunchAgent, which
       starts at login and is preserved when the binary is upgraded.
       Existing installations do not need to run init again.
+
+      Optional shared workload queue (requires Python 3.9+: brew install python):
+        memcap run -- your-build-command
+        memcap queue
+      Generate opt-in agent hooks, then merge into existing settings:
+        memcap agent-hooks codex --queue
+        memcap agent-hooks claude --queue
+      Reload sessions after installing hooks; Codex also requires hook trust.
 
       If you previously ran `brew services start memcap`, `memcap init` stops and
       removes that agent for you.

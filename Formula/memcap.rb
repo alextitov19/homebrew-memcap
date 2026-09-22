@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.11.0.tar.gz"
-  sha256 "d0eb0fd0a9fd0dd9c3d1cf3a084cd6e265ffb342d55c492b8a1ab7f0cb90761b"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.12.0.tar.gz"
+  sha256 "f9f745fa70997a1dc8d9b05744c056ec18af4d6456706d99fc1878d6f9184746"
   license "MIT"
 
   depends_on "jq"
@@ -46,12 +46,14 @@ class Memcap < Formula
         memcap queue
         memcap gc
       Set GC_MODE=on in memcap.conf to automatically retire verified idle helpers.
-      Generate opt-in agent hooks, then merge into existing settings:
-        memcap agent-hooks codex --queue
-        memcap agent-hooks claude --queue
-      Stop hooks use a local 60-second wait (75-second hook timeout). Merge
-      regenerated hooks into existing installations to prevent rapid polling.
-      Reload sessions after installing hooks; Codex also requires hook trust.
+      Install or refresh agent hooks and managed global instructions:
+        memcap integrate
+        memcap doctor
+      Init offers this integration for detected Claude/Codex profiles.
+      Existing settings are preserved and changed originals are backed up.
+      Re-run integrate after upgrades, then reload agent sessions.
+      Codex requires hook trust review in /hooks; doctor reports unverified trust.
+      Stop hooks wait locally for 60 seconds to avoid rapid model polling.
 
       If you previously ran `brew services start memcap`, `memcap init` stops and
       removes that agent for you.

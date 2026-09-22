@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.10.1.tar.gz"
-  sha256 "84813ca6489fc247c7ad022addb86b862d32f0437d86409762bbd2f82f957cff"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.11.0.tar.gz"
+  sha256 "d0eb0fd0a9fd0dd9c3d1cf3a084cd6e265ffb342d55c492b8a1ab7f0cb90761b"
   license "MIT"
 
   depends_on "jq"
@@ -49,6 +49,8 @@ class Memcap < Formula
       Generate opt-in agent hooks, then merge into existing settings:
         memcap agent-hooks codex --queue
         memcap agent-hooks claude --queue
+      Stop hooks use a local 60-second wait (75-second hook timeout). Merge
+      regenerated hooks into existing installations to prevent rapid polling.
       Reload sessions after installing hooks; Codex also requires hook trust.
 
       If you previously ran `brew services start memcap`, `memcap init` stops and

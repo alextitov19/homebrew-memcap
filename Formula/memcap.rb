@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.14.0.tar.gz"
-  sha256 "73416c3ebbc99018850dea5faef699b7d82261d80a6892da447421d34f93bab7"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.14.1.tar.gz"
+  sha256 "91bdfd5a0dd79a9d4dc066b1bf8e7487782550b4681b99e2e2fe39387c24ab65"
   license "MIT"
 
   depends_on "jq"
@@ -67,7 +67,9 @@ class Memcap < Formula
         memcap report queue-lock
         memcap report disable
       Setup asks once, defaulting to no. Existing installs remain opted out.
-      Reports contain fixed categories and numeric facts, never raw logs or paths.
+      Reports include numeric machine capacity, OS, memory/load and queue facts.
+      Queue ages and last blocker codes describe stored records, not proven live work.
+      No hostnames, commands, project paths or raw logs are published.
       Without opt-in or GitHub access, reporting keeps a private local draft.
 
       If you previously ran `brew services start memcap`, `memcap init` stops and

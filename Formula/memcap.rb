@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.9.1.tar.gz"
-  sha256 "9acde59dea4a0e962ab624ab9ed1155dcae14f1030742968af5c0e9a5028ab38"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.10.0.tar.gz"
+  sha256 "b727c86f70c1eadd666bc6763313426fb4c93d8be7fd58f6c791cdb3a729b98f"
   license "MIT"
 
   depends_on "jq"
@@ -41,9 +41,11 @@ class Memcap < Formula
       starts at login and is preserved when the binary is upgraded.
       Existing installations do not need to run init again.
 
-      Optional shared workload queue (requires Python 3.9+: brew install python):
+      Optional queue and idle-helper collector (Python 3.9+: brew install python):
         memcap run -- your-build-command
         memcap queue
+        memcap gc
+      Set GC_MODE=on in memcap.conf to automatically retire verified idle helpers.
       Generate opt-in agent hooks, then merge into existing settings:
         memcap agent-hooks codex --queue
         memcap agent-hooks claude --queue

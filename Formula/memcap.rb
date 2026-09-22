@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.12.0.tar.gz"
-  sha256 "f9f745fa70997a1dc8d9b05744c056ec18af4d6456706d99fc1878d6f9184746"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.12.1.tar.gz"
+  sha256 "9a2ef5262a548d1df505b5694eeea740b9116fa1771017bed65686a1064814c8"
   license "MIT"
 
   depends_on "jq"
@@ -54,6 +54,9 @@ class Memcap < Formula
       Re-run integrate after upgrades, then reload agent sessions.
       Codex requires hook trust review in /hooks; doctor reports unverified trust.
       Stop hooks wait locally for 60 seconds to avoid rapid model polling.
+      If TaskOutput is unavailable, use the existing ID from memcap queue:
+        memcap wait JOB_ID --timeout 60
+      This does not create another queued job or reserve memory.
 
       If you previously ran `brew services start memcap`, `memcap init` stops and
       removes that agent for you.

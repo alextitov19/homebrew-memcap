@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.13.0.tar.gz"
-  sha256 "75cb3d66587d22b88a88fd8d5386186fe8a482fd46cfcc0e4e937a941d88376a"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.14.0.tar.gz"
+  sha256 "73416c3ebbc99018850dea5faef699b7d82261d80a6892da447421d34f93bab7"
   license "MIT"
 
   depends_on "jq"
@@ -61,6 +61,14 @@ class Memcap < Formula
       If TaskOutput is unavailable, use the existing ID from memcap queue:
         memcap wait JOB_ID --timeout 60
       This does not create another queued job or reserve memory.
+
+      Optional sanitized GitHub feedback (Python 3.9+ and an authenticated gh):
+        memcap report enable
+        memcap report queue-lock
+        memcap report disable
+      Setup asks once, defaulting to no. Existing installs remain opted out.
+      Reports contain fixed categories and numeric facts, never raw logs or paths.
+      Without opt-in or GitHub access, reporting keeps a private local draft.
 
       If you previously ran `brew services start memcap`, `memcap init` stops and
       removes that agent for you.

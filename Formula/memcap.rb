@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.12.1.tar.gz"
-  sha256 "9a2ef5262a548d1df505b5694eeea740b9116fa1771017bed65686a1064814c8"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.13.0.tar.gz"
+  sha256 "75cb3d66587d22b88a88fd8d5386186fe8a482fd46cfcc0e4e937a941d88376a"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,10 @@ class Memcap < Formula
       Run `memcap init` to set up. It installs memcap's own LaunchAgent, which
       starts at login and is preserved when the binary is upgraded.
       Existing installations do not need to run init again.
+
+      Docker, agents and simulators now share measured usage under TOTAL_BUDGET_GB.
+      Docker's VM ceiling is not a reservation. BUDGET_MODE=split retains the
+      legacy watchdog slices. Upgrades preserve pause state and Docker settings.
 
       Optional queue and idle-helper collector (Python 3.9+: brew install python):
         memcap run -- your-build-command

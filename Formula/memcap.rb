@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.15.1.tar.gz"
-  sha256 "949ea7ec4b537e1c48d607041c5c80f33ce59d3cc0a1ba16af6742734fc44fcc"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.0.tar.gz"
+  sha256 "a8dc0d698e310e59d635e09180643c9f29395c650fce3e6da9ac7897940bad45"
   license "MIT"
 
   depends_on "jq"
@@ -41,7 +41,19 @@ class Memcap < Formula
       starts at login and is preserved when the binary is upgraded.
       Existing installations do not need to run init again.
 
-      Docker, agents and simulators now share measured usage under TOTAL_BUDGET_GB.
+      New setup uses QUEUE_POLICY=adaptive: pressure, physical headroom and staged
+      starts govern admission; TOTAL_BUDGET_GB is a planning target. Yellow is
+      permitted and red blocks new heavy starts. Existing configs without a policy
+      keep strict admission until the owner changes them. Suggested adaptive profile:
+        QUEUE_POLICY=adaptive
+        QUEUE_MAX_PRESSURE=yellow
+        QUEUE_MAX_JOBS=12
+        QUEUE_WORKERS=8
+        QUEUE_JOB_GB=1
+      Worker allocation is shared; 8 is a per-job maximum, not a fixed allocation.
+      Upgrading never resumes memcap or migrates your live policy automatically.
+
+      Docker, agents and simulators share measured usage under TOTAL_BUDGET_GB.
       Docker's VM ceiling is not a reservation. BUDGET_MODE=split retains the
       legacy watchdog slices. Upgrades preserve pause state and Docker settings.
 

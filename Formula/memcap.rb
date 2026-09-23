@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.0.tar.gz"
-  sha256 "a8dc0d698e310e59d635e09180643c9f29395c650fce3e6da9ac7897940bad45"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.1.tar.gz"
+  sha256 "fe04aaba30459a1d8596d7f49469c8e2e6232a6c76a6aaabc9bcda410c7222cf"
   license "MIT"
 
   depends_on "jq"
@@ -71,6 +71,9 @@ class Memcap < Formula
       Running sessions receive guidance at their next tool, once per version.
       Reload sessions if hook definitions changed; existing runners keep old code.
       Codex requires hook trust review in /hooks; doctor reports unverified trust.
+      Checked filename-glob and path-query inspection avoids heavy reservations.
+      Docker/container/VM figures are not interchangeable; the VM ceiling reserves no RAM.
+      A paused planning target is not an admission refusal. Accumulated swap is not paging rate.
       Stop hooks wait locally for 60 seconds to avoid rapid model polling.
       If TaskOutput is unavailable, use the existing ID from memcap queue:
         memcap wait JOB_ID --timeout 60

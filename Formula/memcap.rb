@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.15.0.tar.gz"
-  sha256 "18c87fdb721bb97a967f82df2b27165e7148bdd0622c1c9524e87a00cbf63138"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.15.1.tar.gz"
+  sha256 "949ea7ec4b537e1c48d607041c5c80f33ce59d3cc0a1ba16af6742734fc44fcc"
   license "MIT"
 
   depends_on "jq"
@@ -76,7 +76,8 @@ class Memcap < Formula
       Queue ages and last blocker codes describe stored records, not proven live work.
       No hostnames, commands, project paths or raw logs are published.
       Performance regressions are reportable even if the command succeeds.
-      Report once per incident, not every poll; existing rate limits still apply.
+      Memcap has no publication quota or retry cooldown.
+      Report once per incident, not every poll; duplicate suppression still applies.
       Without opt-in or GitHub access, reporting keeps a private local draft.
 
       If you previously ran `brew services start memcap`, `memcap init` stops and

@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.15.1.tar.gz"
-  sha256 "949ea7ec4b537e1c48d607041c5c80f33ce59d3cc0a1ba16af6742734fc44fcc"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.1.tar.gz"
+  sha256 "fe04aaba30459a1d8596d7f49469c8e2e6232a6c76a6aaabc9bcda410c7222cf"
   license "MIT"
 
   depends_on "jq"
@@ -41,7 +41,19 @@ class Memcap < Formula
       starts at login and is preserved when the binary is upgraded.
       Existing installations do not need to run init again.
 
-      Docker, agents and simulators now share measured usage under TOTAL_BUDGET_GB.
+      New setup uses QUEUE_POLICY=adaptive: pressure, physical headroom and staged
+      starts govern admission; TOTAL_BUDGET_GB is a planning target. Yellow is
+      permitted and red blocks new heavy starts. Existing configs without a policy
+      keep strict admission until the owner changes them. Suggested adaptive profile:
+        QUEUE_POLICY=adaptive
+        QUEUE_MAX_PRESSURE=yellow
+        QUEUE_MAX_JOBS=12
+        QUEUE_WORKERS=8
+        QUEUE_JOB_GB=1
+      Worker allocation is shared; 8 is a per-job maximum, not a fixed allocation.
+      Upgrading never resumes memcap or migrates your live policy automatically.
+
+      Docker, agents and simulators share measured usage under TOTAL_BUDGET_GB.
       Docker's VM ceiling is not a reservation. BUDGET_MODE=split retains the
       legacy watchdog slices. Upgrades preserve pause state and Docker settings.
 
@@ -59,6 +71,9 @@ class Memcap < Formula
       Running sessions receive guidance at their next tool, once per version.
       Reload sessions if hook definitions changed; existing runners keep old code.
       Codex requires hook trust review in /hooks; doctor reports unverified trust.
+      Checked filename-glob and path-query inspection avoids heavy reservations.
+      Docker/container/VM figures are not interchangeable; the VM ceiling reserves no RAM.
+      A paused planning target is not an admission refusal. Accumulated swap is not paging rate.
       Stop hooks wait locally for 60 seconds to avoid rapid model polling.
       If TaskOutput is unavailable, use the existing ID from memcap queue:
         memcap wait JOB_ID --timeout 60

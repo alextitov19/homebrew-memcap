@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.1.tar.gz"
-  sha256 "fe04aaba30459a1d8596d7f49469c8e2e6232a6c76a6aaabc9bcda410c7222cf"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.2.tar.gz"
+  sha256 "e5668f503ce5943f43023458db4e051ea509a8b75b00368db92fbe1a00e1c25e"
   license "MIT"
 
   depends_on "jq"
@@ -71,6 +71,9 @@ class Memcap < Formula
       Running sessions receive guidance at their next tool, once per version.
       Reload sessions if hook definitions changed; existing runners keep old code.
       Codex requires hook trust review in /hooks; doctor reports unverified trust.
+      Owner pause preserves native task mode and worker settings; no queue lock
+      is taken for new paused commands. Guidance refreshes after pause/resume.
+      Finite AWS log reads, workflow control and checked brace reads stay native.
       Checked filename-glob and path-query inspection avoids heavy reservations.
       Docker/container/VM figures are not interchangeable; the VM ceiling reserves no RAM.
       A paused planning target is not an admission refusal. Accumulated swap is not paging rate.

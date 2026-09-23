@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.14.2.tar.gz"
-  sha256 "123a2ea746bcfaa0bccdfab2647d5e039eebbec51d6456020ba28c02235a2f56"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.15.0.tar.gz"
+  sha256 "18c87fdb721bb97a967f82df2b27165e7148bdd0622c1c9524e87a00cbf63138"
   license "MIT"
 
   depends_on "jq"
@@ -55,20 +55,24 @@ class Memcap < Formula
         memcap doctor
       Init offers this integration for detected Claude/Codex profiles.
       Existing settings are preserved and changed originals are backed up.
-      Re-run integrate after upgrades, then reload agent sessions.
+      Re-run integrate after upgrades. Stable hooks pick up new code immediately.
+      Running sessions receive guidance at their next tool, once per version.
+      Reload sessions if hook definitions changed; existing runners keep old code.
       Codex requires hook trust review in /hooks; doctor reports unverified trust.
       Stop hooks wait locally for 60 seconds to avoid rapid model polling.
       If TaskOutput is unavailable, use the existing ID from memcap queue:
         memcap wait JOB_ID --timeout 60
-      This does not create another queued job or reserve memory.
+        memcap wait --session --timeout 60
+      The session form needs no lookup pipeline. This does not create another queued job or reserve memory.
 
       Optional sanitized GitHub feedback (Python 3.9+ and an authenticated gh):
         memcap report enable
         memcap report queue-lock
-        memcap report lightweight-queued --wait-seconds 120
+        memcap report lightweight-queued --context repository-search --wait-seconds 120
         memcap report disable
       Setup asks once, defaulting to no. Existing installs remain opted out.
       Reports include numeric machine capacity, OS, memory/load and queue facts.
+      Fixed activity contexts distinguish read, wait, remote and Stop-hook incidents.
       Queue ages and last blocker codes describe stored records, not proven live work.
       No hostnames, commands, project paths or raw logs are published.
       Performance regressions are reportable even if the command succeeds.

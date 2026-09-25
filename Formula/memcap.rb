@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.7.tar.gz"
-  sha256 "78047cfa6cf647f8eb886c87ae932336749ff77d2b8e5c7f18194928856beff8"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.17.0.tar.gz"
+  sha256 "7afed0a17d767434eefd059b7b67d3164a53de5db646bccf7fb442bc8743a41f"
   license "MIT"
 
   depends_on "jq"
@@ -103,6 +103,13 @@ class Memcap < Formula
       loops stay native; filename consumers validate each expanded child argv.
       Literal note appends also accept checked lightweight confirmation suffixes.
       Direct CI watching stays native; combining it with Git mutations is managed.
+      v0.17.0 broadens routine filesystem operations, metadata, find predicates,
+      finite sed edits and supported Benmore/curl/GitHub/Docker remote inspection.
+      Lightweight command substitutions validate producers and expanded arguments.
+      Small Python text probes check actual input sizes and isolate imports.
+      Finite shell helpers qualify after content and expanded-argument checks.
+      These paths avoid workload reservations; normal tool permissions still apply.
+      Local builds, unknown scripts, execution arguments and large inputs queue.
       Single read-only sed substitutions accept escaped slash delimiters.
       Fixed file/line excerpt helpers accept bounded literal call lists.
       Filename searches piped into sequential xargs wc -l remain native.

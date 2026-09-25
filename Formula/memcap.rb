@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.17.0.tar.gz"
-  sha256 "7afed0a17d767434eefd059b7b67d3164a53de5db646bccf7fb442bc8743a41f"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.17.1.tar.gz"
+  sha256 "eab1803b801f31c37fb665779242f571c6c064d5732533f6d44dee9a4be2f07c"
   license "MIT"
 
   depends_on "jq"
@@ -108,6 +108,8 @@ class Memcap < Formula
       Lightweight command substitutions validate producers and expanded arguments.
       Small Python text probes check actual input sizes and isolate imports.
       Finite shell helpers qualify after content and expanded-argument checks.
+      v0.17.1 labels expired valid samples as fresh-sampling waits, not faults.
+      Direct wait commands resolve through the hook's installed executable.
       These paths avoid workload reservations; normal tool permissions still apply.
       Local builds, unknown scripts, execution arguments and large inputs queue.
       Single read-only sed substitutions accept escaped slash delimiters.

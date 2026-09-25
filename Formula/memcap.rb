@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.4.tar.gz"
-  sha256 "aca4599c005f3562a5f6dfe18896982b7a4d88aef694e7b14f584b0c6b8c0db1"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.5.tar.gz"
+  sha256 "13766833ef04b6cfcb4a9562abdb25db511ba751f45e519ee0408b9421bb8781"
   license "MIT"
 
   depends_on "jq"
@@ -78,7 +78,9 @@ class Memcap < Formula
       Adaptive reservations retire old peaks after a minute of complete fresh
       measurements; unknown measurements retain the previous effective allowance.
       Stale cached reads preserve the prior reservation history without shrinking
-      allowances. Literal home/path-alias reads and supported status calls stay native.
+      allowances. Busy/incomplete observations retain reduced adaptive allowances
+      rather than restoring the original startup request. Literal home/path-alias
+      reads and supported status calls stay native.
       Wrapped dev servers remain resources rather than blocking finite-work waits.
       Full guidance is refreshed on SessionStart/version/state changes; later
       prompts receive a short reminder. Reports accept fixed --symptom details.
@@ -89,10 +91,15 @@ class Memcap < Formula
       Docker/container/VM figures are not interchangeable; the VM ceiling reserves no RAM.
       A paused planning target is not an admission refusal. Accumulated swap is not paging rate.
       Stop hooks wait locally for 60 seconds to avoid rapid model polling.
-      If TaskOutput is unavailable, use the existing ID from memcap queue:
+      Prefer native completion notifications without polling when supported.
+      Otherwise use a blocking task poll; if unavailable, use the existing ID from memcap queue:
         memcap wait JOB_ID --timeout 60
         memcap wait --session --timeout 60
-      The session form needs no lookup pipeline. This does not create another queued job or reserve memory.
+      The session form needs no lookup pipeline. Invalid wait usage returns immediately.
+      This does not create another queued job or reserve memory.
+      Supported GitHub/JSON inspection, literal note appends and bounded inspection
+      loops stay native; filename consumers validate each expanded child argv.
+      Routine queue transitions avoid redundant host probes and long context.
 
       Optional sanitized GitHub feedback (Python 3.9+ and an authenticated gh):
         memcap report enable
@@ -107,6 +114,8 @@ class Memcap < Formula
       Performance regressions are reportable even if the command succeeds.
       Memcap has no publication quota or retry cooldown.
       Report once per incident, not every poll; duplicate suppression still applies.
+      Do not re-file an old incident solely after an upgrade or new symptom option.
+      Submit reports directly, separately from shell loops or workload scripts.
       Without opt-in or GitHub access, reporting keeps a private local draft.
 
       If you previously ran `brew services start memcap`, `memcap init` stops and

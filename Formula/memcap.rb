@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.3.tar.gz"
-  sha256 "de8ca11d12959323ee47daa07d9417cf53826cbfe969de70f84a26cc176d01db"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.4.tar.gz"
+  sha256 "aca4599c005f3562a5f6dfe18896982b7a4d88aef694e7b14f584b0c6b8c0db1"
   license "MIT"
 
   depends_on "jq"
@@ -77,9 +77,14 @@ class Memcap < Formula
       Redirected waits, pgrep, tr pipelines and literal regex anchors stay native.
       Adaptive reservations retire old peaks after a minute of complete fresh
       measurements; unknown measurements retain the previous effective allowance.
+      Stale cached reads preserve the prior reservation history without shrinking
+      allowances. Literal home/path-alias reads and supported status calls stay native.
+      Wrapped dev servers remain resources rather than blocking finite-work waits.
+      Full guidance is refreshed on SessionStart/version/state changes; later
+      prompts receive a short reminder. Reports accept fixed --symptom details.
       Headroom queue notices show available RAM, unused reservations and demand.
       New events distinguish application exits from signals; signals alone do not
-      identify their sender. See the September 24 feedback audit in the README.
+      identify their sender. See the release notes for the feedback audit.
       Checked filename-glob and path-query inspection avoids heavy reservations.
       Docker/container/VM figures are not interchangeable; the VM ceiling reserves no RAM.
       A paused planning target is not an admission refusal. Accumulated swap is not paging rate.

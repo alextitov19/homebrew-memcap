@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.2.tar.gz"
-  sha256 "e5668f503ce5943f43023458db4e051ea509a8b75b00368db92fbe1a00e1c25e"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.3.tar.gz"
+  sha256 "de8ca11d12959323ee47daa07d9417cf53826cbfe969de70f84a26cc176d01db"
   license "MIT"
 
   depends_on "jq"
@@ -74,6 +74,12 @@ class Memcap < Formula
       Owner pause preserves native task mode and worker settings; no queue lock
       is taken for new paused commands. Guidance refreshes after pause/resume.
       Finite AWS log reads, workflow control and checked brace reads stay native.
+      Redirected waits, pgrep, tr pipelines and literal regex anchors stay native.
+      Adaptive reservations retire old peaks after a minute of complete fresh
+      measurements; unknown measurements retain the previous effective allowance.
+      Headroom queue notices show available RAM, unused reservations and demand.
+      New events distinguish application exits from signals; signals alone do not
+      identify their sender. See the September 24 feedback audit in the README.
       Checked filename-glob and path-query inspection avoids heavy reservations.
       Docker/container/VM figures are not interchangeable; the VM ceiling reserves no RAM.
       A paused planning target is not an admission refusal. Accumulated swap is not paging rate.

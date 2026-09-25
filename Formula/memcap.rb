@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.6.tar.gz"
-  sha256 "e051a2ff504731bf2b09f50bc172b1e5ad0b455adbda0ea99f891da0e77364ad"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.7.tar.gz"
+  sha256 "78047cfa6cf647f8eb886c87ae932336749ff77d2b8e5c7f18194928856beff8"
   license "MIT"
 
   depends_on "jq"
@@ -101,6 +101,8 @@ class Memcap < Formula
       This does not create another queued job or reserve memory.
       Supported GitHub/JSON inspection, literal note appends and bounded inspection
       loops stay native; filename consumers validate each expanded child argv.
+      Literal note appends also accept checked lightweight confirmation suffixes.
+      Direct CI watching stays native; combining it with Git mutations is managed.
       Single read-only sed substitutions accept escaped slash delimiters.
       Fixed file/line excerpt helpers accept bounded literal call lists.
       Filename searches piped into sequential xargs wc -l remain native.

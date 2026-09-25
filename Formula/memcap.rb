@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.5.tar.gz"
-  sha256 "13766833ef04b6cfcb4a9562abdb25db511ba751f45e519ee0408b9421bb8781"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.16.6.tar.gz"
+  sha256 "e051a2ff504731bf2b09f50bc172b1e5ad0b455adbda0ea99f891da0e77364ad"
   license "MIT"
 
   depends_on "jq"
@@ -92,6 +92,8 @@ class Memcap < Formula
       A paused planning target is not an admission refusal. Accumulated swap is not paging rate.
       Stop hooks wait locally for 60 seconds to avoid rapid model polling.
       Prefer native completion notifications without polling when supported.
+      If Stop has blocked ending the turn, use the existing blocking wait instead;
+      the hook cannot suspend and resume the agent for a notification.
       Otherwise use a blocking task poll; if unavailable, use the existing ID from memcap queue:
         memcap wait JOB_ID --timeout 60
         memcap wait --session --timeout 60
@@ -99,6 +101,11 @@ class Memcap < Formula
       This does not create another queued job or reserve memory.
       Supported GitHub/JSON inspection, literal note appends and bounded inspection
       loops stay native; filename consumers validate each expanded child argv.
+      Single read-only sed substitutions accept escaped slash delimiters.
+      Fixed file/line excerpt helpers accept bounded literal call lists.
+      Filename searches piped into sequential xargs wc -l remain native.
+      Running supervisors retry unavailable identities and failed guarded
+      cancellation while retaining reservations; retry waits release the lock.
       Routine queue transitions avoid redundant host probes and long context.
 
       Optional sanitized GitHub feedback (Python 3.9+ and an authenticated gh):

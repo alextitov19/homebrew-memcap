@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.17.1.tar.gz"
-  sha256 "eab1803b801f31c37fb665779242f571c6c064d5732533f6d44dee9a4be2f07c"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.18.0.tar.gz"
+  sha256 "6ebeaf621ca9a30d26c2602b74cacc13079ad4c9498d39cab6c900be3c05da04"
   license "MIT"
 
   depends_on "jq"
@@ -110,6 +110,12 @@ class Memcap < Formula
       Finite shell helpers qualify after content and expanded-argument checks.
       v0.17.1 labels expired valid samples as fresh-sampling waits, not faults.
       Direct wait commands resolve through the hook's installed executable.
+      v0.18.0 adds Git branch inspection, finite jq interpolation, document text
+      reads and checked environment arguments for remote calls. Subagent waits
+      use separate completion scopes while retaining parent-session fairness.
+      Shared samples refresh early without extending their validity. Incomplete
+      runs can raise learned estimates but cannot lower them. Numeric telemetry
+      records classification, estimate provenance and elapsed admission blockers.
       These paths avoid workload reservations; normal tool permissions still apply.
       Local builds, unknown scripts, execution arguments and large inputs queue.
       Single read-only sed substitutions accept escaped slash delimiters.

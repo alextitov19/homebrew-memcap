@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.18.0.tar.gz"
-  sha256 "6ebeaf621ca9a30d26c2602b74cacc13079ad4c9498d39cab6c900be3c05da04"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.18.1.tar.gz"
+  sha256 "8c66777cba254079541cbefb254e26020e66cf6dfee46b12a6c0c19237e68456"
   license "MIT"
 
   depends_on "jq"
@@ -116,6 +116,10 @@ class Memcap < Formula
       Shared samples refresh early without extending their validity. Incomplete
       runs can raise learned estimates but cannot lower them. Numeric telemetry
       records classification, estimate provenance and elapsed admission blockers.
+      v0.18.1 accounts for identity-checked descendants that change process groups,
+      without extending cancellation targets or foreground waits. Older cached
+      observations cannot erase newer paging evidence. Existing supervisors retain
+      their loaded code until completion; upgrading does not cancel them.
       These paths avoid workload reservations; normal tool permissions still apply.
       Local builds, unknown scripts, execution arguments and large inputs queue.
       Single read-only sed substitutions accept escaped slash delimiters.

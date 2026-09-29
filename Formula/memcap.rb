@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.18.3.tar.gz"
-  sha256 "4e3232399451e5d6b98e3bb902f21650ff4f4d714d5386a96aa510351b3497a1"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.18.4.tar.gz"
+  sha256 "4d5bf829525b68d88fc9ed79408bc96ecf8c98f6a8afc7d43d11b8d38770fb17"
   license "MIT"
 
   depends_on "jq"
@@ -130,6 +130,11 @@ class Memcap < Formula
       Live Maestro MCP ownership protects its specific simulator device.
       Docker settings reads are bounded when Python is available; version-only
       integration metadata differences are informational when definitions match.
+      v0.18.4 adds AWS retry/SSO, hosted uploads, command lookup, home aliases
+      and checked file:line loops. Concurrent hooks deduplicate full guidance;
+      SessionStart still refreshes on resume/compaction. Failed jobs retain
+      measured peaks for upward-only learning; recently trained estimates survive
+      cache churn. Unknown local builds and execution-capable options still queue.
       These paths avoid workload reservations; normal tool permissions still apply.
       Local builds, unknown scripts, execution arguments and large inputs queue.
       Single read-only sed substitutions accept escaped slash delimiters.

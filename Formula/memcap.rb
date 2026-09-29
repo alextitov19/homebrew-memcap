@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.18.1.tar.gz"
-  sha256 "8c66777cba254079541cbefb254e26020e66cf6dfee46b12a6c0c19237e68456"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.18.2.tar.gz"
+  sha256 "7b9270c52f8b898c081326ac0b7e6724544ecbaaef9e09e7f1a1f830ce62c0a5"
   license "MIT"
 
   depends_on "jq"
@@ -120,6 +120,10 @@ class Memcap < Formula
       without extending cancellation targets or foreground waits. Older cached
       observations cannot erase newer paging evidence. Existing supervisors retain
       their loaded code until completion; upgrading does not cancel them.
+      v0.18.2 binds explicit runners and session waits to the calling conversation.
+      Scoped Stop hooks no longer claim other projects' legacy unkeyed jobs.
+      Git remote/ref inspection, finite jq objects and checked fallback arguments
+      stay native. Relative helpers are checked in the tool's working directory.
       These paths avoid workload reservations; normal tool permissions still apply.
       Local builds, unknown scripts, execution arguments and large inputs queue.
       Single read-only sed substitutions accept escaped slash delimiters.

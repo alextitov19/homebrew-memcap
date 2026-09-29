@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.18.4.tar.gz"
-  sha256 "4d5bf829525b68d88fc9ed79408bc96ecf8c98f6a8afc7d43d11b8d38770fb17"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.19.0.tar.gz"
+  sha256 "db59cb014ed3135aca6cab4fe49721bfd3dc1ccd0df23b86ccd926b23329182f"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,13 @@ class Memcap < Formula
       Run `memcap init` to set up. It installs memcap's own LaunchAgent, which
       starts at login and is preserved when the binary is upgraded.
       Existing installations do not need to run init again.
+
+      v0.19.0 recovers observation of abandoned queue groups and shows effective
+      reservations. Known abandoned development servers receive a guarded grace;
+      claim/pin shared servers with `memcap claim JOB_ID [--pin]`.
+      User pause, active sessions/clients and unknown work remain protected.
+      Script peak history survives tag changes and lost supervisors. No profile
+      reinstall or trust change is needed; old runners keep their loaded version.
 
       New setup uses QUEUE_POLICY=adaptive: pressure, physical headroom and staged
       starts govern admission; TOTAL_BUDGET_GB is a planning target. Yellow is

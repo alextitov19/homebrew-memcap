@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.19.0.tar.gz"
-  sha256 "db59cb014ed3135aca6cab4fe49721bfd3dc1ccd0df23b86ccd926b23329182f"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.20.0.tar.gz"
+  sha256 "321e0371ae00fbed48d2f3c1d4af7e519b895c9627f2bb32dc7d701eb6fd0dfd"
   license "MIT"
 
   depends_on "jq"
@@ -41,12 +41,17 @@ class Memcap < Formula
       starts at login and is preserved when the binary is upgraded.
       Existing installations do not need to run init again.
 
-      v0.19.0 recovers observation of abandoned queue groups and shows effective
-      reservations. Known abandoned development servers receive a guarded grace;
-      claim/pin shared servers with `memcap claim JOB_ID [--pin]`.
-      User pause, active sessions/clients and unknown work remain protected.
-      Script peak history survives tag changes and lost supervisors. No profile
-      reinstall or trust change is needed; old runners keep their loaded version.
+      v0.20.0 adds optional local performance analytics and fixes validated
+      option-prefixed inspection, SSM parameter reads and scoped waits.
+        memcap analytics enable --service --claude
+        memcap analytics today
+        memcap analytics html
+      Analytics stays on this Mac with bounded retention and private numeric
+      events. Current sessions gain hook observations after setup; native Claude
+      API/token telemetry requires a newly started process. Codex API/token usage
+      remains unknown. No agent transcript scraping or public analytics upload.
+      Existing exporters, policy, pause and hook trust are preserved. No profile
+      reinstall is needed for command fixes; old runners keep their loaded code.
 
       New setup uses QUEUE_POLICY=adaptive: pressure, physical headroom and staged
       starts govern admission; TOTAL_BUDGET_GB is a planning target. Yellow is

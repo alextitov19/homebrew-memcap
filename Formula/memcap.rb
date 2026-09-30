@@ -45,7 +45,7 @@ class Memcap < Formula
       option-prefixed inspection, SSM parameter reads and scoped waits.
         memcap analytics enable --service --claude
         memcap analytics today
-        memcap analytics html
+        memcap analytics html ~/Downloads/memcap-performance.html
       Analytics stays on this Mac with bounded retention and private numeric
       events. Current sessions gain hook observations after setup; native Claude
       API/token telemetry requires a newly started process. Codex API/token usage

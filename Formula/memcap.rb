@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.21.0.tar.gz"
-  sha256 "daf31d89e7e7490419f834cc6aace982c6c7cf5b0f5d7b0affdb471bc3524254"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.21.1.tar.gz"
+  sha256 "b57d177a6e1ddd61be4c19ba86c0e721f6ba6985479339e64be6fdd1ab98eff4"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,11 @@ class Memcap < Formula
       New installations: run `memcap init` to install memcap's own LaunchAgent.
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
+
+      v0.21.1 carries worker limits into nested Jest/Vitest/Playwright test CLIs,
+      accounts for physical headroom when allocating workers, and retains waiting
+      jobs through transient identity probe failures. Existing supervisors keep
+      their loaded code until completion; active jobs are not restarted.
 
       v0.21.0 routes lightweight and unknown-demand calls natively. Only positive
       heavyweight evidence enters the shared queue. Local helpers, package scripts

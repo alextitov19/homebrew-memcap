@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.21.1.tar.gz"
-  sha256 "b57d177a6e1ddd61be4c19ba86c0e721f6ba6985479339e64be6fdd1ab98eff4"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.22.0.tar.gz"
+  sha256 "ff60f6541f25aa6190e19bc224330016871142135ee2f65ac690f1c551580902"
   license "MIT"
 
   depends_on "jq"
@@ -41,10 +41,14 @@ class Memcap < Formula
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
 
-      v0.21.1 carries worker limits into nested Jest/Vitest/Playwright test CLIs,
-      accounts for physical headroom when allocating workers, and retains waiting
-      jobs through transient identity probe failures. Existing supervisors keep
-      their loaded code until completion; active jobs are not restarted.
+      v0.22.0 reserves disposable test stacks and their workload together before
+      starting containers: `memcap environment run --memory TOTAL_GIB
+      --compose compose.test.yaml -- TEST_COMMAND`. Verified owned containers stop
+      after completion; volumes, pins, live claims and uncertain ownership remain
+      protected. Existing untracked stacks are not adopted or stopped.
+      Lightweight wrappers stay native, supported shell stages admit separately,
+      and analytics retain pending ages and separate tagged monitoring work.
+      Existing supervisors keep their loaded code; active jobs are not restarted.
 
       v0.21.0 routes lightweight and unknown-demand calls natively. Only positive
       heavyweight evidence enters the shared queue. Local helpers, package scripts

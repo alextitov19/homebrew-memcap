@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.20.0.tar.gz"
-  sha256 "321e0371ae00fbed48d2f3c1d4af7e519b895c9627f2bb32dc7d701eb6fd0dfd"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.21.0.tar.gz"
+  sha256 "daf31d89e7e7490419f834cc6aace982c6c7cf5b0f5d7b0affdb471bc3524254"
   license "MIT"
 
   depends_on "jq"
@@ -37,150 +37,60 @@ class Memcap < Formula
   # run. Fixed in v0.2.0.
   def caveats
     <<~EOS
-      Run `memcap init` to set up. It installs memcap's own LaunchAgent, which
-      starts at login and is preserved when the binary is upgraded.
-      Existing installations do not need to run init again.
+      New installations: run `memcap init` to install memcap's own LaunchAgent.
+      Existing installations do not need init again. Upgrades preserve the
+      owner pause, live policy, Docker settings and agent hook trust.
 
-      v0.20.0 adds optional local performance analytics and fixes validated
-      option-prefixed inspection, SSM parameter reads and scoped waits.
+      v0.21.0 routes lightweight and unknown-demand calls natively. Only positive
+      heavyweight evidence enters the shared queue. Local helpers, package scripts
+      and Git hooks are inspected without execution; tool permissions still apply.
+      First-run unknown allocations remain possible; memcap is not a kernel cap.
+      Heavy admissions rotate across parent sessions. Pressure and headroom checks
+      remain; accumulated swap alone is not an admission blocker.
+
+      Refresh agent guidance and managed timeout ceilings after upgrading:
+        memcap integrate
+        memcap doctor
+      Integration preserves unrelated settings and backs up changed originals.
+      Reload sessions to adopt changed hooks or timeout ceilings. Existing runners
+      retain their loaded code. Codex hook trust is reviewed by the owner in /hooks.
+      Stable hooks load new code at their next invocation.
+
+      Allow needed managed jobs up to 24 hours, including admission waiting:
+        memcap run --wait 86400 -- your-build-command
+      Prefer native completion notifications. Otherwise block on the existing
+      native task; if unavailable, `memcap wait --session --timeout 60` observes
+      this scope without creating another job. Never duplicate queued work.
+
+      Optional local analytics (Python 3.9+):
         memcap analytics enable --service --claude
         memcap analytics today
         memcap analytics html ~/Downloads/memcap-performance.html
-      Analytics stays on this Mac with bounded retention and private numeric
-      events. Current sessions gain hook observations after setup; native Claude
-      API/token telemetry requires a newly started process. Codex API/token usage
-      remains unknown. No agent transcript scraping or public analytics upload.
-      Existing exporters, policy, pause and hook trust are preserved. No profile
-      reinstall is needed for command fixes; old runners keep their loaded code.
+        memcap analytics doctor
+      v0.21.0 repairs recording at the SQLite storage cap. Analytics distinguishes
+      build, policy and pause cohorts; missing coverage remains unknown. Native
+      Claude token telemetry requires a newly started process; Codex token usage
+      remains unknown. No transcript scraping or public analytics upload.
 
-      New setup uses QUEUE_POLICY=adaptive: pressure, physical headroom and staged
-      starts govern admission; TOTAL_BUDGET_GB is a planning target. Yellow is
-      permitted and red blocks new heavy starts. Existing configs without a policy
-      keep strict admission until the owner changes them. Suggested adaptive profile:
-        QUEUE_POLICY=adaptive
-        QUEUE_MAX_PRESSURE=yellow
-        QUEUE_MAX_JOBS=12
-        QUEUE_WORKERS=8
-        QUEUE_JOB_GB=1
-      Worker allocation is shared; 8 is a per-job maximum, not a fixed allocation.
-      Upgrading never resumes memcap or migrates your live policy automatically.
+      Optional temporary raw command evidence, kept only on this Mac:
+        memcap trace on
+        memcap trace status
+        memcap trace clear
+      Capture expires after 24 hours and storage is bounded. Raw commands are
+      separate from public reporting. Inspect routing with `memcap classify`.
 
-      Docker, agents and simulators share measured usage under TOTAL_BUDGET_GB.
-      Docker's VM ceiling is not a reservation. BUDGET_MODE=split retains the
-      legacy watchdog slices. Upgrades preserve pause state and Docker settings.
-
-      Optional queue and idle-helper collector (Python 3.9+: brew install python):
-        memcap run -- your-build-command
-        memcap queue
-        memcap gc
-      Set GC_MODE=on in memcap.conf to automatically retire verified idle helpers.
-      Install or refresh agent hooks and managed global instructions:
-        memcap integrate
-        memcap doctor
-      Init offers this integration for detected Claude/Codex profiles.
-      Existing settings are preserved and changed originals are backed up.
-      Re-run integrate after upgrades. Stable hooks pick up new code immediately.
-      Running sessions receive guidance at their next tool, once per version.
-      Reload sessions if hook definitions changed; existing runners keep old code.
-      Codex requires hook trust review in /hooks; doctor reports unverified trust.
-      Owner pause preserves native task mode and worker settings; no queue lock
-      is taken for new paused commands. Guidance refreshes after pause/resume.
-      Finite AWS log reads, workflow control and checked brace reads stay native.
-      Redirected waits, pgrep, tr pipelines and literal regex anchors stay native.
-      Adaptive reservations retire old peaks after a minute of complete fresh
-      measurements; unknown measurements retain the previous effective allowance.
-      Stale cached reads preserve the prior reservation history without shrinking
-      allowances. Busy/incomplete observations retain reduced adaptive allowances
-      rather than restoring the original startup request. Literal home/path-alias
-      reads and supported status calls stay native.
-      Wrapped dev servers remain resources rather than blocking finite-work waits.
-      Full guidance is refreshed on SessionStart/version/state changes; later
-      prompts receive a short reminder. Reports accept fixed --symptom details.
-      Headroom queue notices show available RAM, unused reservations and demand.
-      New events distinguish application exits from signals; signals alone do not
-      identify their sender. See the release notes for the feedback audit.
-      Checked filename-glob and path-query inspection avoids heavy reservations.
-      Docker/container/VM figures are not interchangeable; the VM ceiling reserves no RAM.
-      A paused planning target is not an admission refusal. Accumulated swap is not paging rate.
-      Stop hooks wait locally for 60 seconds to avoid rapid model polling.
-      Prefer native completion notifications without polling when supported.
-      If Stop has blocked ending the turn, use the existing blocking wait instead;
-      the hook cannot suspend and resume the agent for a notification.
-      Otherwise use a blocking task poll; if unavailable, use the existing ID from memcap queue:
-        memcap wait JOB_ID --timeout 60
-        memcap wait --session --timeout 60
-      The session form needs no lookup pipeline. Invalid wait usage returns immediately.
-      This does not create another queued job or reserve memory.
-      Supported GitHub/JSON inspection, literal note appends and bounded inspection
-      loops stay native; filename consumers validate each expanded child argv.
-      Literal note appends also accept checked lightweight confirmation suffixes.
-      Direct CI watching stays native; combining it with Git mutations is managed.
-      v0.17.0 broadens routine filesystem operations, metadata, find predicates,
-      finite sed edits and supported Benmore/curl/GitHub/Docker remote inspection.
-      Lightweight command substitutions validate producers and expanded arguments.
-      Small Python text probes check actual input sizes and isolate imports.
-      Finite shell helpers qualify after content and expanded-argument checks.
-      v0.17.1 labels expired valid samples as fresh-sampling waits, not faults.
-      Direct wait commands resolve through the hook's installed executable.
-      v0.18.0 adds Git branch inspection, finite jq interpolation, document text
-      reads and checked environment arguments for remote calls. Subagent waits
-      use separate completion scopes while retaining parent-session fairness.
-      Shared samples refresh early without extending their validity. Incomplete
-      runs can raise learned estimates but cannot lower them. Numeric telemetry
-      records classification, estimate provenance and elapsed admission blockers.
-      v0.18.1 accounts for identity-checked descendants that change process groups,
-      without extending cancellation targets or foreground waits. Older cached
-      observations cannot erase newer paging evidence. Existing supervisors retain
-      their loaded code until completion; upgrading does not cancel them.
-      v0.18.2 binds explicit runners and session waits to the calling conversation.
-      Scoped Stop hooks no longer claim other projects' legacy unkeyed jobs.
-      Git remote/ref inspection, finite jq objects and checked fallback arguments
-      stay native. Relative helpers are checked in the tool's working directory.
-      v0.18.3 adds checked finite loops, awk/jq excerpts and SSM helpers.
-      Verified old foreground servers no longer block finite completion.
-      Single/partial peaks can raise estimates without complete-run credit.
-      Live Maestro MCP ownership protects its specific simulator device.
-      Docker settings reads are bounded when Python is available; version-only
-      integration metadata differences are informational when definitions match.
-      v0.18.4 adds AWS retry/SSO, hosted uploads, command lookup, home aliases
-      and checked file:line loops. Concurrent hooks deduplicate full guidance;
-      SessionStart still refreshes on resume/compaction. Failed jobs retain
-      measured peaks for upward-only learning; recently trained estimates survive
-      cache churn. Unknown local builds and execution-capable options still queue.
-      These paths avoid workload reservations; normal tool permissions still apply.
-      Local builds, unknown scripts, execution arguments and large inputs queue.
-      Single read-only sed substitutions accept escaped slash delimiters.
-      Fixed file/line excerpt helpers accept bounded literal call lists.
-      Filename searches piped into sequential xargs wc -l remain native.
-      Running supervisors retry unavailable identities and failed guarded
-      cancellation while retaining reservations; retry waits release the lock.
-      Routine queue transitions avoid redundant host probes and long context.
-
-      Optional sanitized GitHub feedback (Python 3.9+ and an authenticated gh):
+      Optional sanitized feedback requires explicit owner opt-in:
         memcap report enable
-        memcap report queue-lock
-        memcap report lightweight-queued --context repository-search --wait-seconds 120
-        memcap report disable
-      Setup asks once, defaulting to no. Existing installs remain opted out.
-      Reports include numeric machine capacity, OS, memory/load and queue facts.
-      Fixed activity contexts distinguish read, wait, remote and Stop-hook incidents.
-      Queue ages and last blocker codes describe stored records, not proven live work.
-      No hostnames, commands, project paths or raw logs are published.
-      Performance regressions are reportable even if the command succeeds.
-      Memcap has no publication quota or retry cooldown.
-      Report once per incident, not every poll; duplicate suppression still applies.
-      Do not re-file an old incident solely after an upgrade or new symptom option.
-      Submit reports directly, separately from shell loops or workload scripts.
-      Without opt-in or GitHub access, reporting keeps a private local draft.
+        memcap report lightweight-queued --context repository-search
+      Reports contain fixed categories and numeric facts, never raw commands or
+      private paths. Report each incident once; without consent it stays local.
 
-      If you previously ran `brew services start memcap`, `memcap init` stops and
-      removes that agent for you.
-
-      To check enforcement is actually running, at any time:
+      Inspect current enforcement, queue and diagnostics:
         memcap status
-
-      Read the latest private pressure snapshot:
+        memcap queue
         memcap diagnostics
+      Docker's VM ceiling is not a reservation. Never infer admission from it.
+      Paused commands retain native task behavior and worker settings.
     EOS
   end
 

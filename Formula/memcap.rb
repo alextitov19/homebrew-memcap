@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.22.0.tar.gz"
-  sha256 "ff60f6541f25aa6190e19bc224330016871142135ee2f65ac690f1c551580902"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.23.0.tar.gz"
+  sha256 "1628d6dc739669e5852d5312b9870a2e4b2627f3b9856bd93576d0165b36295f"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,14 @@ class Memcap < Formula
       New installations: run `memcap init` to install memcap's own LaunchAgent.
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
+
+      v0.23.0 learns automatic estimates from fixed requests without changing
+      their floors. For ordinary builds/tests, omit --memory for automatic sizing.
+      Save private release baselines outside rolling retention:
+        memcap analytics snapshot ~/memcap-before --days 1
+        memcap analytics release-compare ~/memcap-before ~/memcap-after
+      Compare completed waits, pending ages, pressure and measurement coverage.
+      Version labels follow recorded runner metadata, not installation time.
 
       v0.22.0 reserves disposable test stacks and their workload together before
       starting containers: `memcap environment run --memory TOTAL_GIB

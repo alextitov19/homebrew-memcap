@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.23.0.tar.gz"
-  sha256 "1628d6dc739669e5852d5312b9870a2e4b2627f3b9856bd93576d0165b36295f"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.24.0.tar.gz"
+  sha256 "136aaa68fad82b591a9387ff516fda3af9a430ff6438ee4f3837914b0c06dda5"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,14 @@ class Memcap < Formula
       New installations: run `memcap init` to install memcap's own LaunchAgent.
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
+
+      v0.24.0 reuses measured compiler demand across bounded source edits and
+      observes owned workloads independently of expensive host sampling. Local
+      analytics records actual lower admissions, context misses and probe cost,
+      while retaining exact-workload comparisons with older releases.
+      If analytics is already enabled, refresh only its collector for new fields:
+        launchctl kickstart -k gui/$(id -u)/com.memcap.analytics
+      Existing managed jobs keep their loaded runner; new commands use this version.
 
       v0.23.0 learns automatic estimates from fixed requests without changing
       their floors. For ordinary builds/tests, omit --memory for automatic sizing.

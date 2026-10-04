@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.25.0.tar.gz"
-  sha256 "4b57d2283ea29dcb99715fc976e3b2b611d7550a74e471909e0e39ef11f1a4a5"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.26.0.tar.gz"
+  sha256 "7caafe89ef81b50bd0afe56953b25c6dda67fc896d3f8ea3dbac32facabc048d"
   license "MIT"
 
   depends_on "jq"
@@ -41,11 +41,11 @@ class Memcap < Formula
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
 
-      v0.25.0 preserves learned small-command requests when compiler evidence is
-      unavailable, recognizes bounded compiler wrappers, and fixes terminal
-      observation accounting. Local analytics distinguishes exact evidence,
-      compiler scope rejection and observation failures. Physical headroom and
-      pressure checks remain in force; live productivity gains need new evidence.
+      v0.26.0 preserves authenticated partial memory peaks, avoids unnecessary
+      compiler source-content reads, and records awake versus sleep-inclusive
+      queue/runtime timing. Partial observations cannot lower estimates; compiler
+      prediction still requires complete evidence. Deadlines, headroom, pressure
+      and ownership policy remain unchanged. Historical missing timing stays unknown.
       If analytics is already enabled, refresh only its collector for new fields:
         launchctl kickstart -k gui/$(id -u)/com.memcap.analytics
       Existing managed jobs keep their loaded runner; new commands use this version.

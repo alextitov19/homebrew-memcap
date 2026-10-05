@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.26.0.tar.gz"
-  sha256 "7caafe89ef81b50bd0afe56953b25c6dda67fc896d3f8ea3dbac32facabc048d"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.27.0.tar.gz"
+  sha256 "da2500e7d5f0ad0404d80a702f1bbee6a8837fc6c2ae49dda90636f85498c1b3"
   license "MIT"
 
   depends_on "jq"
@@ -12,7 +12,7 @@ class Memcap < Formula
     libexec.install Dir["libexec/*"]
     (bin/"memcap").write <<~SH
       #!/usr/bin/env bash
-      MEMCAP_ROOT="#{prefix}" exec "#{prefix}/bin/memcap-real" "$@"
+      MEMCAP_ROOT="#{prefix}" exec /bin/bash "#{prefix}/bin/memcap-real" "$@"
     SH
     (prefix/"bin").install "bin/memcap" => "memcap-real"
     chmod 0755, bin/"memcap"
@@ -41,14 +41,21 @@ class Memcap < Formula
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
 
-      v0.26.0 preserves authenticated partial memory peaks, avoids unnecessary
-      compiler source-content reads, and records awake versus sleep-inclusive
-      queue/runtime timing. Partial observations cannot lower estimates; compiler
-      prediction still requires complete evidence. Deadlines, headroom, pressure
-      and ownership policy remain unchanged. Historical missing timing stays unknown.
+      v0.27.0 uses explicit Bash dispatch in memcap-owned bridges and this wrapper
+      to mitigate a reported macOS nested-script kernel allocation leak. Existing
+      leaked memory cannot be reclaimed by upgrading; save work before a reboot.
+      New analytics records signed kernel-zone growth with boot/build coverage.
+      Fully measured child births can contribute to conservative learning; missing
+      measurements still cannot lower estimates. Environment help remains native.
+      Abandoned simulator leaves can enter idle observation during Shutting Down;
+      live mobile tools, active devices, ownership, grace and signal checks remain.
+      Pressure, headroom, fixed memory floors and the owner pause stay unchanged.
       If analytics is already enabled, refresh only its collector for new fields:
         launchctl kickstart -k gui/$(id -u)/com.memcap.analytics
       Existing managed jobs keep their loaded runner; new commands use this version.
+      Existing trusted stable hooks remain compatible; their text need not change.
+      Explicit integration adopts new hook templates and requires session reload
+      and independent owner review of any changed Codex hook trust.
 
       v0.23.0 learns automatic estimates from fixed requests without changing
       their floors. For ordinary builds/tests, omit --memory for automatic sizing.

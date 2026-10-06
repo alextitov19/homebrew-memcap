@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.27.0.tar.gz"
-  sha256 "da2500e7d5f0ad0404d80a702f1bbee6a8837fc6c2ae49dda90636f85498c1b3"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.28.0.tar.gz"
+  sha256 "fa895db0025304487445ae69896cfaea502022948ac160ba5c18560ce16ec8cc"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,14 @@ class Memcap < Formula
       New installations: run `memcap init` to install memcap's own LaunchAgent.
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
+
+      v0.28.0 counts OrbStack VM/helper memory and follows the selected Docker
+      endpoint. Desktop settings no longer describe an OrbStack ceiling.
+      Supported mise/just/hyperfine and developer tool wrappers retain native
+      lightweight calls while known heavy work uses the existing admission policy.
+      No budgets, headroom, pressure thresholds or worker limits are changed.
+      Existing trusted hooks load the new package at their next invocation;
+      existing jobs retain their loaded runner. No integration/trust reset is needed.
 
       v0.27.0 uses explicit Bash dispatch in memcap-owned bridges and this wrapper
       to mitigate a reported macOS nested-script kernel allocation leak. Existing

@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.28.1.tar.gz"
-  sha256 "e75f78482193813a9616079f34c73da9cc5b9f38db09b73b983610c5ae75c240"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.28.2.tar.gz"
+  sha256 "1efffc6a1f0bb05bdeeb5957f59f90e23122e1c6917d260630ebca8d330c4269"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,13 @@ class Memcap < Formula
       New installations: run `memcap init` to install memcap's own LaunchAgent.
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
+
+      v0.28.2 adds private sampler retry and queue-hook startup/response timing.
+      Historical missing timings remain unknown in release comparisons. This
+      release measures latency; admission, pressure, cleanup and VM policy stay
+      unchanged. No hook integration or agent restart is required. Existing jobs
+      retain their loaded runner. If analytics is enabled, refresh its collector:
+        launchctl kickstart -k gui/$(id -u)/com.memcap.analytics
 
       v0.28.1 reports the selected running Colima profile's VM memory ceiling.
       This is a read-only status query; admission, cleanup and VM settings are

@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.28.0.tar.gz"
-  sha256 "fa895db0025304487445ae69896cfaea502022948ac160ba5c18560ce16ec8cc"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.28.1.tar.gz"
+  sha256 "e75f78482193813a9616079f34c73da9cc5b9f38db09b73b983610c5ae75c240"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,10 @@ class Memcap < Formula
       New installations: run `memcap init` to install memcap's own LaunchAgent.
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
+
+      v0.28.1 reports the selected running Colima profile's VM memory ceiling.
+      This is a read-only status query; admission, cleanup and VM settings are
+      unchanged. No engine restart or hook integration refresh is required.
 
       v0.28.0 counts OrbStack VM/helper memory and follows the selected Docker
       endpoint. Desktop settings no longer describe an OrbStack ceiling.

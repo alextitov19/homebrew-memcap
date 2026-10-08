@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.28.2.tar.gz"
-  sha256 "1efffc6a1f0bb05bdeeb5957f59f90e23122e1c6917d260630ebca8d330c4269"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.29.0.tar.gz"
+  sha256 "28c073439e5fa3af8a06fa445d9253e844597a21762fe326ca13613a654c0dee"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,16 @@ class Memcap < Formula
       New installations: run `memcap init` to install memcap's own LaunchAgent.
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
+
+      v0.29.0 fixes filename-only Python routing, adaptive request admission,
+      bounded sampler handoff and child-birth learning. Direct live-agent
+      simulator drivers retain ownership protection. Private incident bundles,
+      diagnostic retention and runner provenance improve release comparisons.
+      No owner budgets, headroom, worker limits or VM settings are changed.
+      Doctor distinguishes configuration and trust problems; only the owner can
+      review modified Codex hooks in /hooks. Existing jobs retain loaded code.
+      Stable hooks load new code on the next invocation. If analytics is enabled:
+        launchctl kickstart -k gui/$(id -u)/com.memcap.analytics
 
       v0.28.2 adds private sampler retry and queue-hook startup/response timing.
       Historical missing timings remain unknown in release comparisons. This

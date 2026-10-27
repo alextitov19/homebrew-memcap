@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.32.4.tar.gz"
-  sha256 "02886f402e6235c347543a727e7b37925c859b7981cdcccc8b65f41f8b8a43cf"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.32.5.tar.gz"
+  sha256 "bb31d451f77913437bc34a536e611fb441740a7ed8152ab4df1cd490666227bf"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,9 @@ class Memcap < Formula
       New installations: run `memcap init` to install memcap's own LaunchAgent.
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
+
+      v0.32.5 lets a running job's reservation shrink after its peak while the
+      queue is busy, instead of holding the peak until the job ends.
 
       v0.32.4 keeps queued jobs moving across upgrades: a waiting job whose
       installation was removed falls back to the installed memcap. Jobs already

@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.32.3.tar.gz"
-  sha256 "9c636245eb297072c01e9a297b0595940dbc031ef5d1b9821cc9833bfa011dee"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.32.4.tar.gz"
+  sha256 "02886f402e6235c347543a727e7b37925c859b7981cdcccc8b65f41f8b8a43cf"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,12 @@ class Memcap < Formula
       New installations: run `memcap init` to install memcap's own LaunchAgent.
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
+
+      v0.32.4 keeps queued jobs moving across upgrades: a waiting job whose
+      installation was removed falls back to the installed memcap. Jobs already
+      waiting on an older version still need it; for this one upgrade, use
+        HOMEBREW_NO_INSTALL_CLEANUP=1 brew upgrade memcap
+      and run `brew cleanup memcap` after they finish.
 
       v0.32.2 lets the watchdog find Homebrew tools such as docker, so finished
       disposable test environments are cleaned up again. An enabled analytics

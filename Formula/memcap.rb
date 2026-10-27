@@ -1,8 +1,8 @@
 class Memcap < Formula
   desc "Keep AI coding agents inside a RAM budget on macOS"
   homepage "https://github.com/alextitov19/memcap"
-  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.32.1.tar.gz"
-  sha256 "47ef44bffef0f4af75dd7b3e70368dc9566a2ba9661bed24a69f45f80e508e5a"
+  url "https://github.com/alextitov19/memcap/archive/refs/tags/v0.32.2.tar.gz"
+  sha256 "6c0f80ab8da51b31f9061b4339ea594ab8167ff3c930238eab568cb827c1601f"
   license "MIT"
 
   depends_on "jq"
@@ -40,6 +40,12 @@ class Memcap < Formula
       New installations: run `memcap init` to install memcap's own LaunchAgent.
       Existing installations do not need init again. Upgrades preserve the
       owner pause, live policy, Docker settings and agent hook trust.
+
+      v0.32.2 lets the watchdog find Homebrew tools such as docker, so finished
+      disposable test environments are cleaned up again. An enabled analytics
+      collector is now refreshed automatically by the first watch pass after an
+      upgrade; the manual kickstart below is no longer needed. Doctor ignores
+      whitespace-only CLAUDE.md/AGENTS.md differences. Admission is unchanged.
 
       v0.31.0 keeps emulator listings native and explains compound heavyweight
       commands and explicit waits. Private cancellation evidence, bounded 90-day
